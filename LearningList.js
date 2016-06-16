@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ListView,
-  Touchable
+  TouchableHighlight,
+  ActivityIndicatorIOS,
   Text,
   View
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const REQUEST_URL = 'http://localhost:8001/learnings.json';
+const REQUEST_URL = 'http://localhost:8080/learnings';
 
 class LearningList extends Component {
 	constructor(props) {
@@ -31,8 +32,9 @@ class LearningList extends Component {
 		fetch(REQUEST_URL)
 			.then((response) => response.json())
 			.then((responseData) => {
+				debugger;
 				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(responseData.learnings),
+					dataSource: this.state.dataSource.cloneWithRows(responseData),
 					loaded: true,
 				});
 			})
@@ -44,8 +46,9 @@ class LearningList extends Component {
 	}
 
 	renderLearning(learning) {
+		debugger;
 		return (
-			<View style={styles.rightContainer}>
+			<View style={styles.rowContainer}>
 				<Text style={styles.title}>{ learning.title }</Text>
 				<TouchableHighlight onPress={() => this.removeRow(learning.id)}>
 					<Icon name="minus-circle" size={30} color="#00dfff" />
@@ -78,5 +81,23 @@ class LearningList extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	rowContainer: {
+		flexDirection: 'row',
+		padding: 10,
+	},
+	container: {
+		flexDirection: 'row',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#F5F5F5',
+	},
+	title: {
+		fontSize: 20,
+		marginBottom: 8,
+	}
+});
 
 module.exports = LearningList;
