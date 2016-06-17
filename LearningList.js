@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NavigationBar from 'react-native-navbar';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
 
@@ -112,31 +113,50 @@ class LearningList extends Component {
 	}
 
 	render() {
+		const titleConfig = {
+			title: 'what do you want to learn?',
+		};
+
+		const rightButtonConfig = {
+			title: 'Next >',
+			handler: () => {
+				this.props.navigator.push({
+					name: 'MyLearning'
+				});
+			}
+		};
+
 		if (!this.state.loaded) {
 			return this.renderLoadingView();
 		}
 
 		return (
-			<View style={styles.container}>
-				<ListView
-					dataSource={this.state.dataSource}
-					renderRow={this.renderLearning.bind(this)}
-					style={styles.listContainer}
-				/>
-				<View style={styles.rowContainer}>
-					<TextInput 
-						ref="NewLearningTextBox"
-						style={styles.title} 
-						onChangeText={(text) => this.changeText(text)} 
-						onSubmitEditing={() => this.addRow()} 
-						value={this.state.newLearningText} />
-					<TouchableHighlight 
-						style={styles.rightButton} 
-						onPress={() => this.refs.NewLearningTextBox.focus()}>
-						<Icon name="plus-circle" size={30} color="#0000ff" />
-					</TouchableHighlight>
+			<View style={{ flex: 1, }}>
+				<NavigationBar
+					title={titleConfig}
+					rightButton={rightButtonConfig} />
+				<View style={styles.container}>
+					<ListView
+						dataSource={this.state.dataSource}
+						renderRow={this.renderLearning.bind(this)}
+						style={styles.listContainer}
+					/>
+					<View style={styles.rowContainer}>
+						<TextInput 
+							ref="NewLearningTextBox"
+							style={styles.title} 
+							onChangeText={(text) => this.changeText(text)} 
+							onSubmitEditing={() => this.addRow()} 
+							value={this.state.newLearningText} />
+						<TouchableHighlight 
+							style={styles.rightButton} 
+							onPress={() => this.refs.NewLearningTextBox.focus()}>
+							<Icon name="plus-circle" size={30} color="#0000ff" />
+						</TouchableHighlight>
+					</View>
 				</View>
 			</View>
+			
 		);
 	}
 }
@@ -159,7 +179,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-end',
 	},
 	listContainer: {
-		marginTop: 60,
+		marginTop: 30,
 	},
 
 	title: {

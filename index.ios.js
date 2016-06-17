@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  NavigatorIOS,
+  Navigator,
   Text,
   View
 } from 'react-native';
@@ -19,22 +19,22 @@ import MyLearning from './MyLearning';
 class Jourley extends Component {
   render() {
     return (
-      <NavigatorIOS
-        ref="nav"
-        style={styles.container}
-        initialRoute={{
-          title: 'What do you want to learn?',
-          component: LearningList,
-          rightButtonTitle: 'Next >',
-          onRightButtonPress: () => {
-            this.refs.nav.navigator.push({
-              title: 'My Learning',
-              component: MyLearning,
-              rightButtonTitle: 'Edit',
-              onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
-            });
+      <Navigator
+        initialRoute={{name: 'LearningList', index: 0}}
+        renderScene={(route, navigator) =>
+          {
+            if (route.name == 'LearningList') {
+              return (
+                <LearningList navigator={navigator} />
+              );
+            }
+            if (route.name == 'MyLearning') {
+              return (
+                <MyLearning navigator={navigator} />
+              );
+            }            
           }
-        }}
+        }
       />
     );
   }
