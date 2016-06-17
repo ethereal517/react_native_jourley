@@ -14,15 +14,26 @@ import {
 } from 'react-native';
 
 import LearningList from './LearningList';
+import MyLearning from './MyLearning';
 
 class Jourley extends Component {
   render() {
     return (
       <NavigatorIOS
+        ref="nav"
         style={styles.container}
         initialRoute={{
-          title: 'Jourley',
+          title: 'What do you want to learn?',
           component: LearningList,
+          rightButtonTitle: 'Next >',
+          onRightButtonPress: () => {
+            this.refs.nav.navigator.push({
+              title: 'My Learning',
+              component: MyLearning,
+              rightButtonTitle: 'Edit',
+              onRightButtonPress: () => { this.refs.nav.navigator.pop(); }
+            });
+          }
         }}
       />
     );
