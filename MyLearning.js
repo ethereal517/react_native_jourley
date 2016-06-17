@@ -9,6 +9,7 @@ import {
   View
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import NavigationBar from 'react-native-navbar';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
@@ -62,14 +63,24 @@ class MyLearning extends Component {
 			<View style={styles.rowContainer}>
 				<View style={styles.infoContainer}>
 					<Image 
-						source={{uri: learning.image}}
+						source={{ uri: learning.image }}
 						style={styles.thumbnail}
 					/>
 					<View style={styles.rightContainer}>
 						<Text style={styles.title}>{ learning.title }</Text>
-						<View>
-							<Text>{ learning.reads ? learning.reads : 'No' } Reads</Text>
-						</View>			
+						<View style={styles.counts}>
+							<Text style={styles.count}>{ learning.reads ? learning.reads : 'No' } Read{ learning.reads && learning.reads > 0 ? 's' : ''}</Text>
+							<Text style={styles.count}>{ learning.practice ? learning.practice : 'No' } Practice{ learning.practice && learning.practice > 0 ? 's' : ''}</Text>
+							<Text style={styles.count}>{ learning.learning ? learning.learning : 'No' } Practice{ learning.learning && learning.learning > 0 ? 's' : ''}</Text>
+						</View>		
+						<View style={styles.verbose}>
+							<Text>Focus Areas: </Text>
+							<Text>Time Commitment: </Text>
+						</View>	
+						
+					</View>
+					<View style={styles.forwardContainer}>
+						<Icon name="chevron-right" size={40} color="#00dfff" style={styles.forward} />	
 					</View>
 				</View>
 				<View style={styles.urlsContainer}>
@@ -161,10 +172,23 @@ const styles = StyleSheet.create({
 
 	},
 	rightContainer: {
-
+		flex: 1,
+		marginLeft: 10,
+		backgroundColor: 'cyan',
+	},
+	forward: {
+		alignSelf: 'center',
+	},
+	forwardContainer: {
+		justifyContent: 'center',
 	},
 	infoContainer: {
-
+		borderBottomColor: 'grey',
+		borderBottomWidth: 1,
+		backgroundColor: 'yellow',
+		flexDirection: 'row',
+		flex: 1,
+		padding: 5,
 	},
 	urlsContainer: {
 		flexDirection: 'row',
@@ -173,9 +197,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 	},
 	urlItem: {
-		backgroundColor: 'yellow',
-		borderColor: 'black',
-		borderWidth: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
 		flex: 1,		
@@ -183,7 +204,7 @@ const styles = StyleSheet.create({
 	itemText: {
 		textAlign: 'center',
 		flex: 1,
-		backgroundColor: 'green',
+		color: 'blue',
 		alignSelf: 'center',
 	},
 	thumbnail: {
@@ -191,10 +212,21 @@ const styles = StyleSheet.create({
 		height: 100,
 		borderRadius: 4,
 		borderColor: 'blue',
+		backgroundColor: 'grey',
 	},
 	title: {
-
+		fontSize: 30,
 	},
+	counts: {
+		flexDirection: 'row',
+	},
+	verbose: {
+		marginTop: 10,
+	},
+	count: {
+		marginRight: 20,
+		color: '#0023f5',
+	}
 });
 
 module.exports = MyLearning;
