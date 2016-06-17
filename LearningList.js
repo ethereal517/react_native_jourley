@@ -32,7 +32,6 @@ class LearningList extends Component {
 		fetch(REQUEST_URL)
 			.then((response) => response.json())
 			.then((responseData) => {
-				debugger;
 				this.setState({
 					dataSource: this.state.dataSource.cloneWithRows(responseData),
 					loaded: true,
@@ -46,11 +45,10 @@ class LearningList extends Component {
 	}
 
 	renderLearning(learning) {
-		debugger;
 		return (
 			<View style={styles.rowContainer}>
 				<Text style={styles.title}>{ learning.title }</Text>
-				<TouchableHighlight onPress={() => this.removeRow(learning.id)}>
+				<TouchableHighlight style={styles.rightButton} onPress={() => this.removeRow(learning._id)}>
 					<Icon name="minus-circle" size={30} color="#00dfff" />
 				</TouchableHighlight>
 			</View>
@@ -59,7 +57,7 @@ class LearningList extends Component {
 
 	renderLoadingView() {
 		return (
-			<View style={styles.container}>
+			<View style={styles.loadingContainer}>
 				<ActivityIndicatorIOS size='large' />
 				<Text>
 					Loading Learnings...
@@ -77,6 +75,7 @@ class LearningList extends Component {
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={this.renderLearning.bind(this)}
+				style={styles.listContainer}
 			/>
 		);
 	}
@@ -85,18 +84,32 @@ class LearningList extends Component {
 const styles = StyleSheet.create({
 	rowContainer: {
 		flexDirection: 'row',
+		backgroundColor: 'blue',
+		justifyContent: 'flex-end',
 		padding: 10,
+		borderBottomColor: 'grey',
+		borderBottomWidth: 1,
 	},
-	container: {
-		flexDirection: 'row',
+	loadingContainer: {
+		backgroundColor: 'green',
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5F5F5',
+	},
+	rightButton: {
+		right: 10,
+		alignItems: 'flex-end',
+		backgroundColor: 'yellow'
+	},
+	listContainer: {
+		backgroundColor: 'brown',
+		marginTop: 60,
 	},
 	title: {
 		fontSize: 20,
 		marginBottom: 8,
+		alignItems: 'flex-start',
+		flex: 10,
 	}
 });
 
