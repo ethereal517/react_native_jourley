@@ -49,7 +49,7 @@ class Schedule extends Component {
 		for ( let i = 0; i < 7; i++)
 		{
 			let remainder = schedule % 8;
-			schedule = schedule >> 8;
+			schedule = schedule >> 3;
 
 			dayScheduleJson.push({
 				id: i, scheValue: remainder
