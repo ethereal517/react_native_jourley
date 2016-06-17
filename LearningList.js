@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ListView,
   TouchableHighlight,
+  TextInput,
   ActivityIndicatorIOS,
   Text,
   View
@@ -21,6 +22,7 @@ class LearningList extends Component {
 		this.state = {
 			dataSource: dataSource,
 			loaded: false,
+			newLearningText: '',
 		};
 	}
 
@@ -52,6 +54,36 @@ class LearningList extends Component {
 			})
 	}
 
+	addRow() {
+		fetch(REQUEST_URL, { method: "POST", 
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				title: this.state.newLearningText,
+			})
+		})
+			.then((response) => response.json())
+			.then((responseData) => {
+				if (responseData.status == 200)
+				{
+					this.setState({
+						newLearningText: ''
+					});
+					
+					this.fetchLearnings();
+				}
+			})
+
+	}
+
+	changeText(text) {
+		this.setState({
+			newLearningText: text
+		});
+	}
+
 	renderLearning(learning) {
 		return (
 			<View style={styles.rowContainer}>
@@ -80,11 +112,19 @@ class LearningList extends Component {
 		}
 
 		return (
-			<ListView
-				dataSource={this.state.dataSource}
-				renderRow={this.renderLearning.bind(this)}
-				style={styles.listContainer}
-			/>
+			<View style={styles.container}>
+				<ListView
+					dataSource={this.state.dataSource}
+					renderRow={this.renderLearning.bind(this)}
+					style={styles.listContainer}
+				/>
+				<View style={styles.rowContainer}>
+					<TextInput style={styles.title} onChangeText={(text) => this.changeText(text)} value={this.state.newLearningText} />
+					<TouchableHighlight style={styles.rightButton} onPress={() => this.addRow()}>
+						<Icon name="plus-circle" size={30} color="#0000ff" />
+					</TouchableHighlight>
+				</View>
+			</View>
 		);
 	}
 }
@@ -92,14 +132,12 @@ class LearningList extends Component {
 const styles = StyleSheet.create({
 	rowContainer: {
 		flexDirection: 'row',
-		backgroundColor: 'blue',
 		justifyContent: 'flex-end',
 		padding: 10,
 		borderBottomColor: 'grey',
 		borderBottomWidth: 1,
 	},
 	loadingContainer: {
-		backgroundColor: 'green',
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -107,12 +145,11 @@ const styles = StyleSheet.create({
 	rightButton: {
 		right: 10,
 		alignItems: 'flex-end',
-		backgroundColor: 'yellow'
 	},
 	listContainer: {
-		backgroundColor: 'brown',
 		marginTop: 60,
 	},
+
 	title: {
 		fontSize: 20,
 		marginBottom: 8,
