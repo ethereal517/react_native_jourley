@@ -71,7 +71,7 @@ class LearningList extends Component {
 					this.setState({
 						newLearningText: ''
 					});
-					
+
 					this.fetchLearnings();
 				}
 			})
@@ -83,6 +83,11 @@ class LearningList extends Component {
 			newLearningText: text
 		});
 	}
+
+	submitEditing(event) {
+		console.log("enter clicked");
+	}
+
 
 	renderLearning(learning) {
 		return (
@@ -119,8 +124,15 @@ class LearningList extends Component {
 					style={styles.listContainer}
 				/>
 				<View style={styles.rowContainer}>
-					<TextInput style={styles.title} onChangeText={(text) => this.changeText(text)} value={this.state.newLearningText} />
-					<TouchableHighlight style={styles.rightButton} onPress={() => this.addRow()}>
+					<TextInput 
+						ref="NewLearningTextBox"
+						style={styles.title} 
+						onChangeText={(text) => this.changeText(text)} 
+						onSubmitEditing={() => this.addRow()} 
+						value={this.state.newLearningText} />
+					<TouchableHighlight 
+						style={styles.rightButton} 
+						onPress={() => this.refs.NewLearningTextBox.focus()}>
 						<Icon name="plus-circle" size={30} color="#0000ff" />
 					</TouchableHighlight>
 				</View>
