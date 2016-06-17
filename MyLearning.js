@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
 	rightContainer: {
 		flex: 1,
 		marginLeft: 10,
-		backgroundColor: 'cyan',
 	},
 	forward: {
 		alignSelf: 'center',
@@ -194,7 +193,6 @@ const styles = StyleSheet.create({
 	infoContainer: {
 		borderBottomColor: 'grey',
 		borderBottomWidth: 1,
-		backgroundColor: 'yellow',
 		flexDirection: 'row',
 		flex: 1,
 		padding: 5,
