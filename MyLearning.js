@@ -8,11 +8,27 @@ import {
   View
 } from 'react-native';
 
+import NavigationBar from 'react-native-navbar';
+
 class MyLearning extends Component {
 	render() {
+		const titleConfig = {
+			title: 'My Learning',
+		};
+
+		const rightButtonConfig = {
+			title: 'Edit',
+			handler: () => this.props.navigator.pop()
+		};
+		
 		return (
-			<View style={styles.container}>
-				<Text>Hey boy!</Text>
+			<View style={{ flex: 1, }}>
+				<NavigationBar
+					title={titleConfig}
+					rightButton={rightButtonConfig} />
+				<View style={styles.container}>
+					<Text>Hey boy!</Text>
+				</View>
 			</View>
 		);
 	}
