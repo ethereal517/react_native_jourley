@@ -10,7 +10,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const REQUEST_URL = 'http://localhost:8080/learnings';
+const REQUEST_URL = 'http://localhost:8080/learnings/';
 
 class LearningList extends Component {
 	constructor(props) {
@@ -42,6 +42,14 @@ class LearningList extends Component {
 
 	removeRow(id) {
 		console.log(id);
+		fetch(REQUEST_URL + id, { method: "DELETE" })
+			.then((response) => response.json())
+			.then((responseData) => {
+				if (responseData.status == 200)
+				{
+					this.fetchLearnings();
+				}
+			})
 	}
 
 	renderLearning(learning) {
