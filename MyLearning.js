@@ -57,7 +57,8 @@ class MyLearning extends Component {
 	showSchedule(id) {
 		console.log("showSchedule");
 		this.props.navigator.push({
-			name: 'Schedule'
+			name: 'Schedule',
+			learningID: id,
 		});
 	}
 
@@ -170,6 +171,11 @@ const styles = StyleSheet.create({
 	},
 	listContainer: {
 
+	},
+	loadingContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	rowContainer: {
 

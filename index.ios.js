@@ -36,7 +36,7 @@ class Jourley extends Component {
             }
             if (route.name == 'Schedule') {
               return (
-                <Schedule navigator={navigator} />
+                <Schedule navigator={navigator} learningID={ route.learningID } />
               );
             }            
           }
@@ -49,7 +49,7 @@ class Jourley extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
 
 AppRegistry.registerComponent('Jourley', () => Jourley);
