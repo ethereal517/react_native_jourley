@@ -95,22 +95,22 @@ class Schedule extends Component {
 			<View style={styles.rowContainer}>
 				<Text style={styles.dayHeader}>{ weekDays[daySchedule.id] }</Text>
 				<View style={styles.timeMoment}>
-					<Text>Early Morning</Text>
-					<Switch
+					<Text style={styles.title}>Early Morning</Text>
+					<Switch style={styles.rightButton}
 						onValueChange={(value) => this.updateSchedule(daySchedule.id, 0, value)}
 						value={ daySchedule.scheValue % 2 ? true : false }
 					/>
 				</View>
 				<View style={styles.timeMoment}>
-					<Text>Lunch Time</Text>
-					<Switch
+					<Text style={styles.title}>Lunch Time</Text>
+					<Switch style={styles.rightButton}
 						onValueChange={(value) => this.updateSchedule(daySchedule.id, 1, value)}
 						value={ (daySchedule.scheValue >> 1) % 2 ? true : false } 
 					/>
 				</View>
 				<View style={styles.timeMoment}>
-					<Text>After Office</Text>
-					<Switch
+					<Text style={styles.title}>After Office</Text>
+					<Switch style={styles.rightButton}
 						onValueChange={(value) => this.updateSchedule(daySchedule.id, 2, value)}
 						value={ (daySchedule.scheValue >> 2) % 2 ? true : false } 
 					/>
@@ -173,6 +173,30 @@ const styles = StyleSheet.create({
 	rowContainer: {
 
 	},
+	dayHeader: {
+		color: 'grey',
+		fontSize: 15,
+		backgroundColor: '#cccccc',
+		padding: 10,
+	},
+	timeMoment: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		padding: 10,
+		borderBottomColor: 'grey',
+		borderBottomWidth: 1,
+
+	},
+	rightButton: {
+		right: 10,
+		alignItems: 'flex-end',
+	},
+	title: {
+		fontSize: 20,
+		marginBottom: 8,
+		alignItems: 'flex-start',
+		flex: 10,
+	}
 });
 
 const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
