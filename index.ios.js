@@ -15,6 +15,7 @@ import {
 
 import LearningList from './LearningList';
 import MyLearning from './MyLearning';
+import Schedule from './Schedule';
 
 class Jourley extends Component {
   render() {
@@ -31,6 +32,11 @@ class Jourley extends Component {
             if (route.name == 'MyLearning') {
               return (
                 <MyLearning navigator={navigator} />
+              );
+            }
+            if (route.name == 'Schedule') {
+              return (
+                <Schedule navigator={navigator} />
               );
             }            
           }

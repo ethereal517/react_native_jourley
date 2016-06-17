@@ -56,6 +56,9 @@ class MyLearning extends Component {
 
 	showSchedule(id) {
 		console.log("showSchedule");
+		this.props.navigator.push({
+			name: 'Schedule'
+		});
 	}
 
 	renderLearning(learning) {
@@ -74,8 +77,8 @@ class MyLearning extends Component {
 							<Text style={styles.count}>{ learning.learning ? learning.learning : 'No' } Practice{ learning.learning && learning.learning > 0 ? 's' : ''}</Text>
 						</View>		
 						<View style={styles.verbose}>
-							<Text>Focus Areas: </Text>
-							<Text>Time Commitment: </Text>
+							<Text>Focus Areas: None (click refine it to define)</Text>
+							<Text>Time Commitment: None (click refine it to define)</Text>
 						</View>	
 						
 					</View>
