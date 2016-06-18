@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Navigator,
+  Navigator,  
   TabBarIOS,
   Text,
   View
@@ -18,19 +18,27 @@ import LearningList from './LearningList';
 import MyLearning from './MyLearning';
 import Schedule from './Schedule';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 class Jourley extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'LearningList'
+      selectedTab: 'LearningList',
+      navigator: null,
     };
+  }
+
+  changeTabSelection(tabName) {
+    // debugger;
+   //    this.props.navigator.push({
+   //      name: tabName,
+   //    });
+    console.log(tabName);
   }
 
   render() {
     return (
-      <View style={{ flex: 1, }}>
         <Navigator
           initialRoute={{name: 'LearningList', index: 0}}
           renderScene={(route, navigator) =>
@@ -42,7 +50,31 @@ class Jourley extends Component {
               }
               if (route.name == 'MyLearning') {
                 return (
-                  <MyLearning navigator={navigator} />
+                  <View style={{ flex: 1, }}>
+                    
+                    <TabBarIOS
+                      tintColor="black"
+                      barTintColor="#3abeff">
+                      <Ionicon.TabBarItemIOS
+                        style={ styles.tabBarItem }
+                        selected={false}
+                        iconName='ios-search'
+                        title='Explorer'
+                        navigator={navigator}
+                        onPress={ this.changeTabSelection('LearningList') }>
+                        <View></View>
+                      </Ionicon.TabBarItemIOS>
+                      <Ionicon.TabBarItemIOS
+                        style={{ backgroundColor: 'green' }}
+                        selected={true}
+                        iconName='ios-list-outline'
+                        title='My Learning'
+                        navigator={navigator}
+                        onPress = { this.changeTabSelection('MyLearning') }>
+                        <MyLearning navigator={navigator} />
+                      </Ionicon.TabBarItemIOS>
+                    </TabBarIOS>
+                  </View>
                 );
               }
               if (route.name == 'Schedule') {
@@ -53,34 +85,6 @@ class Jourley extends Component {
             }
           }
         />
-
-        <TabBarIOS selectedTab={this.state.selectedTab}>
-          <Icon.TabBarItemIOS
-            selected={this.state.selectedTab === 'LearningList'}
-            iconName='search'
-            title='Explorer'
-            onPress={() => {
-              this.setState({
-                selectedTab: 'LearningList'
-              });
-            }}>
-              <View><Text>ABC</Text></View>
-          </Icon.TabBarItemIOS>
-          <Icon.TabBarItemIOS
-            selected={this.state.selectedTab === 'MyLearning'}
-            iconName='ios-list-outline'
-            title='My Learning'
-            onPress = {() => {
-              this.setState({
-                selectedTab: 'MyLearning'
-              });
-            }}>
-              <View><Text>EFG</Text></View>
-          </Icon.TabBarItemIOS>
-        </TabBarIOS>
-        
-      </View>
-      
     );
   }
 }
@@ -88,6 +92,9 @@ class Jourley extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },  
+  tabBarItem: {
+    backgroundColor: 'red',
   },
 });
 

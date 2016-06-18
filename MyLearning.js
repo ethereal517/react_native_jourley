@@ -3,7 +3,7 @@ import {
   StyleSheet,
   ListView,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicatorIOS,  
   Text,
   Image,
   View
@@ -157,7 +157,7 @@ class MyLearning extends Component {
 				<NavigationBar
 					title={titleConfig}
 					rightButton={rightButtonConfig} />
-				{ content }				
+				{ content }			
 			</View>
 		);
 	}
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	listContainer: {
-
+		backgroundColor: 'yellow'
 	},
 	loadingContainer: {
 		flex: 1,
