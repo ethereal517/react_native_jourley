@@ -3,13 +3,15 @@ import {
   StyleSheet,
   ListView,
   TouchableHighlight,
-  ActivityIndicatorIOS,  
+  ActivityIndicatorIOS, 
+  TabBarIOS, 
   Text,
   Image,
   View
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
@@ -119,6 +121,14 @@ class MyLearning extends Component {
 		);
 	}
 
+	changeTabSelection(tabName) {
+	    // debugger;
+		this.props.navigator.push({
+			name: tabName,
+		});
+	    console.log(tabName);
+	  }
+
 	render() {
 		const titleConfig = {
 			title: 'My Learning',
@@ -157,7 +167,28 @@ class MyLearning extends Component {
 				<NavigationBar
 					title={titleConfig}
 					rightButton={rightButtonConfig} />
-				{ content }			
+                    <TabBarIOS
+                      tintColor="black"
+                      barTintColor="#3abeff">
+                      <Ionicon.TabBarItemIOS
+                        style={ styles.tabBarItem }
+                        selected={false}
+                        iconName='ios-search'
+                        title='Explorer'
+                        navigator={navigator}
+                        onPress={ () => this.changeTabSelection('LearningList') }>
+                        <View></View>
+                      </Ionicon.TabBarItemIOS>
+                      <Ionicon.TabBarItemIOS
+                        style={{ backgroundColor: 'green' }}
+                        selected={true}
+                        iconName='ios-list-outline'
+                        title='My Learning'
+                        navigator={navigator}>
+                		{ content }        
+                      </Ionicon.TabBarItemIOS>
+                    </TabBarIOS>
+							
 			</View>
 		);
 	}
