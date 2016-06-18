@@ -24,7 +24,7 @@ class Jourley extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: ''
+      selectedTab: 'LearningList'
     };
   }
 
@@ -36,25 +36,16 @@ class Jourley extends Component {
           renderScene={(route, navigator) =>
             {
               if (route.name == 'LearningList') {
-                this.setState({
-                  selectedTab: 'LearningList',
-                });
                 return (
                   <LearningList navigator={navigator} />
                 );
               }
               if (route.name == 'MyLearning') {
-                this.setState({
-                  selectedTab: 'MyLearning',
-                });
                 return (
                   <MyLearning navigator={navigator} />
                 );
               }
               if (route.name == 'Schedule') {
-                this.setState({
-                  selectedTab: 'Schedule',
-                });
                 return (
                   <Schedule navigator={navigator} learningID={ route.learningID } />
                 );
@@ -62,6 +53,7 @@ class Jourley extends Component {
             }
           }
         />
+
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <Icon.TabBarItemIOS
             selected={this.state.selectedTab === 'LearningList'}
@@ -72,6 +64,7 @@ class Jourley extends Component {
                 selectedTab: 'LearningList'
               });
             }}>
+              <View><Text>ABC</Text></View>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             selected={this.state.selectedTab === 'MyLearning'}
@@ -82,8 +75,10 @@ class Jourley extends Component {
                 selectedTab: 'MyLearning'
               });
             }}>
+              <View><Text>EFG</Text></View>
           </Icon.TabBarItemIOS>
         </TabBarIOS>
+        
       </View>
       
     );
