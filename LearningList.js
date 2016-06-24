@@ -14,6 +14,7 @@ import NavigationBar from 'react-native-navbar';
 import DeviceInfo from 'react-native-device-info';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
+const UDID = DeviceInfo.getUniqueID();
 
 class LearningList extends Component {
 	constructor(props) {
@@ -36,8 +37,14 @@ class LearningList extends Component {
 		fetch(REQUEST_URL)
 			.then((response) => response.json())
 			.then((responseData) => {
+				var myLearnings = [];
+				for (let learning of responseData) {
+					if(learning.udid && learning.udid == UDID)
+						myLearnings.push(learning);
+				}
+
 				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(responseData),
+					dataSource: this.state.dataSource.cloneWithRows(myLearnings),
 					loaded: true,
 				});
 			})
@@ -64,7 +71,7 @@ class LearningList extends Component {
 			},
 			body: JSON.stringify({
 				title: this.state.newLearningText,
-				udid: DeviceInfo.getUniqueID(),
+				udid: UDID,
 			})
 		})
 			.then((response) => response.json())
