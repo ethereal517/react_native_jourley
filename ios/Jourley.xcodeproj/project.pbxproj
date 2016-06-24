@@ -38,6 +38,7 @@
 		EA999DCC1D12ED0300957991 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA999DC41D12ED0300957991 /* Octicons.ttf */; };
 		EA999DCD1D12ED0300957991 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA999DC51D12ED0300957991 /* Zocial.ttf */; };
 		EA999DEB1D14D5C700957991 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA999DD31D14C19D00957991 /* libRNVectorIcons.a */; };
+		EAEA40441D1BEA250047CDF5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA40421D1BE9F60047CDF5 /* libRNDeviceInfo.a */; };
 		EE0EB8CCC52C4B49B6E94CC1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511D5926C4984ED59BC615B4 /* Zocial.ttf */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		EAEA40411D1BE9F60047CDF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAEA40331D1BE9F60047CDF5 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +175,7 @@
 		EA999DC41D12ED0300957991 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		EA999DC51D12ED0300957991 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		EA999DCE1D14C19D00957991 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		EAEA40331D1BE9F60047CDF5 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAEA40441D1BEA250047CDF5 /* libRNDeviceInfo.a in Frameworks */,
 				EA999DEB1D14D5C700957991 /* libRNVectorIcons.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -304,6 +314,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EAEA40331D1BE9F60047CDF5 /* RNDeviceInfo.xcodeproj */,
 				EA999DCE1D14C19D00957991 /* RNVectorIcons.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -369,6 +380,14 @@
 			isa = PBXGroup;
 			children = (
 				EA999DD31D14C19D00957991 /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAEA40341D1BE9F60047CDF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAEA40421D1BE9F60047CDF5 /* libRNDeviceInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -495,6 +514,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = EAEA40341D1BE9F60047CDF5 /* Products */;
+					ProjectRef = EAEA40331D1BE9F60047CDF5 /* RNDeviceInfo.xcodeproj */;
+				},
+				{
 					ProductGroup = EA999DCF1D14C19D00957991 /* Products */;
 					ProjectRef = EA999DCE1D14C19D00957991 /* RNVectorIcons.xcodeproj */;
 				},
@@ -583,6 +606,13 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = EA999DD21D14C19D00957991 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EAEA40421D1BE9F60047CDF5 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = EAEA40411D1BE9F60047CDF5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

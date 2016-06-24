@@ -11,6 +11,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NavigationBar from 'react-native-navbar';
+import DeviceInfo from 'react-native-device-info';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
 
@@ -63,6 +64,7 @@ class LearningList extends Component {
 			},
 			body: JSON.stringify({
 				title: this.state.newLearningText,
+				udid: DeviceInfo.getUniqueID(),
 			})
 		})
 			.then((response) => response.json())
