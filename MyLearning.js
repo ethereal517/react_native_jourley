@@ -13,8 +13,10 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
+import DeviceInfo from 'react-native-device-info';
 
 const REQUEST_URL = 'http://localhost:8080/learnings/';
+const UDID = DeviceInfo.getUniqueID();
 
 class MyLearning extends Component {
 	constructor(props) {
@@ -36,8 +38,14 @@ class MyLearning extends Component {
 		fetch(REQUEST_URL)
 			.then((response) => response.json())
 			.then((responseData) => {
+				var myLearnings = [];
+				for (let learning of responseData) {
+					if(learning.udid && learning.udid == UDID)
+						myLearnings.push(learning);
+				}
+
 				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(responseData),
+					dataSource: this.state.dataSource.cloneWithRows(myLearnings),
 					loaded: true,
 				});
 			})
